@@ -7,10 +7,10 @@
       vibes: checked
     </h2>
 
-    <iframe src="https://open.spotify.com/embed/playlist/{{ spotify_uri }}" width="60%" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media" style="border-radius: 12px; margin-bottom: 20px;"></iframe>
+    <iframe src="https://open.spotify.com/embed/playlist/{{ spotify_uri }}" width="60%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media" style="border-radius: 12px; margin-bottom: 20px;"></iframe>
 
     <p style="font-size: 18px; color: #1DB954; margin-bottom: 10px;">Your buzzwords:</p>
-    <ul style="list-style-type: none; padding: 0; color: white; font-size: 18px; text-align: left; max-width: 80%; margin: 0 auto;">
+    <ul style="list-style-type: none; padding: 0; color: white; font-size: 18px; text-align: center; max-width: 80%; margin: 0 auto;">
       {% for keyword in keywords %}
         <li>{{ keyword }}</li>
       {% endfor %}
