@@ -23,7 +23,7 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx build \
-          --file Dockerfile \
+          --file backend/Dockerfile \
           --tag ramenisneat/igotaux:latest \
           --push .
 
