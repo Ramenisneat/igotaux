@@ -2,6 +2,8 @@ from fastapi import FastAPI, Query, HTTPException, Request, Form
 from dotenv import load_dotenv
 import spotipy
 from fastapi.responses import RedirectResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import os
 from spotipy.oauth2 import SpotifyOAuth
 from starlette.middleware.sessions import SessionMiddleware
@@ -13,8 +15,11 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
-#test2
+
+#test3
 
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
@@ -29,9 +34,10 @@ sp_oauth = SpotifyOAuth(
 )
 
 
-@app.get("/")
-async def index():
-   return {"message": "Hello World"}
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+   return templates.TemplateResponse("index.html", {"request": request})
+
 
 
 
@@ -49,7 +55,7 @@ def get_track_uri(item, sp):
       return tracks[0]['uri']
    return None
    
-@app.post("/gen_playlist")
+@app.post("/gen_playlist", response_class=HTMLResponse)
 def gen_playlist(request: Request, keywords: str = Form(...)):
    token_info = request.session.get("token_info")
    if not token_info or "access_token" not in token_info:
@@ -99,6 +105,14 @@ def gen_playlist(request: Request, keywords: str = Form(...)):
 
    sp.playlist_add_items(playlist_id, tracks)
 
+   return templates.TemplateResponse("results.html", {
+        "request": request,
+        "keywords": buzzwords,
+        "playlist": playlist,
+        "spotify_uri": playlist_id
+    })
+
+
 
 @app.get("/login")
 def login():
@@ -117,20 +131,5 @@ def callback(request: Request, code: str = Query(None), state: str = Query(None)
     
 
 @app.get("/enter", response_class=HTMLResponse)
-def keywords_page():
-    html_content = """
-    <html>
-      <head>
-        <title>Generate Playlist</title>
-      </head>
-      <body>
-        <h1>Generate Playlist</h1>
-        <form action="/gen_playlist" method="post">
-          <label for="keywords">Enter keywords (comma separated):</label><br>
-          <input type="text" id="keywords" name="keywords" style="width:300px"/><br><br>
-          <button type="submit">Generate Playlist</button>
-        </form>
-      </body>
-    </html>
-    """
-    return HTMLResponse(content=html_content)
+def keywords_page(request: Request):
+    return templates.TemplateResponse("enter.html", {"request": request})

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Enter Keywords{% endblock %}
+{% block content %}
+  <h2>Generate Playlist from Keywords</h2>
+  <form action="/gen_playlist" method="post">
+    <label for="keywords">Enter keywords (comma separated):</label>
+    <input type="text" id="keywords" name="keywords" style="width:300px">
+    <button type="submit">Generate Playlist</button>
+  </form>
+{% endblock %}
