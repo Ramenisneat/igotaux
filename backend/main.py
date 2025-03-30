@@ -61,7 +61,7 @@ def gen_playlist(request: Request, keywords: str = Form(...)):
    buzzwords = [kw.strip() for kw in keywords.split(",") if kw.strip()]
 
    completion = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-4o-mini",
     messages=[
         {
             "role": "developer",
