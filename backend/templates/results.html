@@ -1,16 +1,23 @@
 {% extends "base.html" %}
-{% block title %}Vibes saved{% endblock %}
+{% block title %}Vibes Saved{% endblock %}
 {% block content %}
-  <h2>Playlist generated.</h2>
-  <iframe src="https://open.spotify.com/embed/playlist/{{ spotify_uri }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  <p>Your buzzwords:</p>
-  <ul>
-    {% for keyword in keywords %}
-      <li>{{ keyword }}</li>
-    {% endfor %}
-  </ul>
-  <p>Playlist details:</p>
-  <pre>{{ playlist | tojson(indent=2) }}</pre>
-{% endblock %}
+  <body style="background-color: black; color: #ffffff; font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1FhQw5IlcoB2ied69pgQMs?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <h2 style="font-size: 30px; font-weight: 700; margin-bottom: 20px; max-width: 80%; color: #1DB954;">
+      vibes: checked
+    </h2>
+
+    <iframe src="https://open.spotify.com/embed/playlist/{{ spotify_uri }}" width="80%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="border-radius: 12px; margin-bottom: 20px;"></iframe>
+
+    <p style="font-size: 18px; color: #1DB954; margin-bottom: 10px;">Your buzzwords:</p>
+    <ul style="list-style-type: none; padding: 0; color: white; font-size: 18px; text-align: left; max-width: 80%; margin: 0 auto;">
+      {% for keyword in keywords %}
+        <li>{{ keyword }}</li>
+      {% endfor %}
+    </ul>
+
+    <p style="font-size: 18px; color: #1DB954; margin-top: 20px;">Playlist details:</p>
+    <pre style="color: white; background-color: #333; padding: 10px; border-radius: 8px; font-size: 14px; overflow-x: auto; max-width: 80%; word-wrap: break-word;">{{ playlist | tojson(indent=2) }}</pre>
+
+  </body>
+{% endblock %}
