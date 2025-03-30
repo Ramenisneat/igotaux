@@ -3,7 +3,7 @@ name: FastAPI Docker Build and Push
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx build \
-          --file Dockerfile \
+          --file backend/Dockerfile \
           --tag ramenisneat/igotaux:latest \
           --push .
 
