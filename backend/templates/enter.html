@@ -3,22 +3,25 @@
 {% block content %}
   <body style="background-color: black; color: #ffffff; font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
 
-    <!-- Heading -->
     <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; max-width: 80%; line-height: 1.4;">
       If you got the vibe but not the playlist, let us fill that awkward silence with an AI-generated playlist based on your vibecheck.
     </h3>
 
-    <!-- Form Section -->
-    <form action="/gen_playlist" method="post" style="background-color: #333; padding: 30px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); max-width: 400px; width: 100%;">
+    <form action="/gen_playlist" method="post" style="background-color: #333; padding: 30px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); max-width: 400px; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
 
-      <!-- Keywords Input -->
-      <label for="keywords" style="font-size: 18px; margin-bottom: 10px; display: block; color: #1DB954;">Enter keywords (comma separated):</label>
+      <label for="keywords" style="font-size: 18px; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: block; color: #1DB954;">Enter keywords (comma separated):</label>
       <input type="text" id="keywords" name="keywords" placeholder="hyperpop, brown shaken espresso, gymrat, etc." style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #1DB954; border-radius: 8px; font-size: 16px; color: #333; background-color: #f4f4f4;">
 
-      <!-- Submit Button -->
-      <button type="submit" style="width: 100%; padding: 12px; background-color: #1DB954; color: white; font-size: 18px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
+      <button type="submit" style="width: 100%; padding: 12px; background-color: #1DB954; color: white; font-size: 18px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">
         Generate Playlist
       </button>
     </form>
   </body>
+
+  <style>
+    button:hover {
+      background-color: #1a8e41;
+    }
+  </style>
 {% endblock %}
+

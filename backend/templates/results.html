@@ -3,7 +3,7 @@
 {% block content %}
   <body style="background-color: black; color: #ffffff; font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
 
-    <h2 style="font-size: 30px; font-weight: 700; margin-bottom: 20px; max-width: 80%; color: #1DB954;">
+    <h2 style="font-size: 30px; font-weight: 700; margin-top: 40px; margin-bottom: 20px; max-width: 80%; color: #1DB954;">
       vibes: checked
     </h2>
 
@@ -15,9 +15,6 @@
         <li>{{ keyword }}</li>
       {% endfor %}
     </ul>
-
-    <p style="font-size: 18px; color: #1DB954; margin-top: 20px;">Playlist details:</p>
-    <pre style="color: white; background-color: #333; padding: 10px; border-radius: 8px; font-size: 14px; overflow-x: auto; max-width: 80%; word-wrap: break-word;">{{ playlist | tojson(indent=2) }}</pre>
 
   </body>
 {% endblock %}
